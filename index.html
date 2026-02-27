@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends Online</title>
+    
+    <!-- Google Fonts: Fredoka One (Headers) & Nunito (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+<body>
+
+    <div id="game-container">
+        
+        <!-- === TOP AREA: Opponent C & Turn Indicator === -->
+        <div class="top-area">
+            <div class="opponent" id="player-C">
+                <div class="avatar-container">
+                    <div class="avatar">C</div>
+                    <div class="status-badge hidden">💤</div>
+                </div>
+                <div class="stats">Waiting...</div>
+            </div>
+        </div>
+
+        <!-- === MIDDLE AREA: Left D, Table, Right B === -->
+        <div class="middle-area">
+            <!-- Left Opponent -->
+            <div class="opponent side-opponent" id="player-D">
+                <div class="avatar-container">
+                    <div class="avatar">D</div>
+                    <div class="status-badge hidden">💤</div>
+                </div>
+                <div class="stats">Waiting...</div>
+            </div>
+
+            <!-- BATTLE ZONE (Center) -->
+            <div id="battle-zone">
+                <div id="guide-message" class="hidden">Hãy bấm vào một đối thủ!</div>
+                <div id="turn-indicator-wrapper">
+                    <div id="turn-indicator">WAITING...</div>
+                </div>
+                
+                <div id="chain-stack">
+                    <div class="empty-placeholder">
+                        <span>BATTLE<br>ZONE</span>
+                    </div>
+                </div>
+                
+                <!-- Log Panel Floating -->
+                <div id="log-panel">
+                    <div class="log-title">Game Logs</div>
+                    <div id="log-content"></div>
+                </div>
+            </div>
+
+            <!-- Right Opponent -->
+            <div class="opponent side-opponent" id="player-B">
+                <div class="avatar-container">
+                    <div class="avatar">B</div>
+                    <div class="status-badge hidden">💤</div>
+                </div>
+                <div class="stats">Waiting...</div>
+            </div>
+        </div>
+
+        <!-- === BOTTOM AREA: Player HUD === -->
+        <div id="player-hud">
+            <!-- Info Panel -->
+            <div class="hud-info">
+                <div class="my-avatar" id="player-A">YOU</div>
+                <div id="my-score"></div>
+            </div>
+
+            <!-- Hand Area -->
+            <div id="player-hand">
+                <div class="hand-label">ACTIONS</div>
+                <div id="hand-actions" class="card-row"></div>
+                
+                <div class="hand-divider"></div>
+                
+                <div class="hand-label">SPELLS</div>
+                <div id="hand-spells" class="card-row"></div>
+            </div>
+        </div>
+
+        <!-- === OVERLAYS === -->
+        <div id="game-over-screen" class="hidden">
+            <div class="modal-content">
+                <div class="trophy">🏆</div>
+                <h1 id="winner-text">Winner!</h1>
+                <button id="btn-restart" class="btn-primary">Play Again</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Socket.IO (Assumes served by backend, or fallback if testing locally without backend) -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Mock Socket.IO if not present (For UI Testing purposes if backend is missing)
+        if (typeof io === 'undefined') {
+            console.warn("Socket.IO not found. UI Only Mode.");
+            window.io = () => ({
+                on: () => {},
+                emit: () => {}
+            });
+        }
+    </script>
+    <!-- Client Logic -->
+    <script src="client.js"></script>
+</body>
+</html>
