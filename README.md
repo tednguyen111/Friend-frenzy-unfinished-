@@ -53,9 +53,13 @@ It is not intended as a final production release.
 ## How to Run (Local)
 
 1. Install dependencies:
-npm install
+install all files (images on drive, ib me)
 
 2. Start development server:
-npm run dev
+run local host (a.js)
 
 3. Open the localhost link provided in the terminal.
+   
+0<img width="1916" height="1028" alt="ảnh minh họa 1" src="https://github.com/user-attachments/assets/daa24625-2807-40da-8507-34947def1a8b" />
+<img width="1918" height="1017" alt="ảnh minh họa 2" src="https://github.com/user-attachments/assets/e9fa641a-c7a0-4dab-bd35-ed4548b1e558" />
+. Here is some visual looks from the game:
